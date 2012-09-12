@@ -263,8 +263,8 @@ module Recurly
       # @param [Hash] params the scope params
       def scope name, params = {}
         scopes[name = name.to_s] = params
-        extend const_set :Scopes, Module.new unless const_defined? :Scopes
-        self::Scopes.send(:define_method, name) { paginate scopes[name] }
+        extend const_set :Scoped, Module.new unless const_defined? :Scoped
+        self::Scoped.send(:define_method, name) { paginate scopes[name] }
       end
 
       # Iterates through every record by automatically paging.
